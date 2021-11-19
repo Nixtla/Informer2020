@@ -75,6 +75,14 @@ class Dataset_ETT_hour(Dataset):
         else:
             self.data_y = data[border1:border2]
         self.data_stamp = data_stamp
+        
+        df_stamp.rename(columns={'date': 'ds'}, inplace=1)
+        df_stamp = df_stamp.reset_index(drop=True)
+        cols = [self.target] if self.features == 'S' else cols_data
+        self.df_scaled = pd.concat([df_stamp, pd.DataFrame(self.data_x, columns=cols)], axis=1)
+        self.df_not_scaled = pd.concat([df_stamp, pd.DataFrame(self.data_y, columns=cols)], axis=1)
+        x_cols = [f'ex_{i + 1}' for i in range(self.data_stamp.shape[1])]
+        self.df_x = pd.concat([df_stamp, pd.DataFrame(self.data_stamp, columns=x_cols)], axis=1)
     
     def __getitem__(self, index):
         s_begin = index

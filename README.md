@@ -68,6 +68,13 @@ To easily reproduce the results you can follow the next steps:
 for file in `ls scripts`; do make run_module module="bash scripts/$script"; done
 ```
 
+### Data
+
+To generate train, validation and test data for each experiment you can use:
+```
+for file in `ls scripts/data`: do make run_module module="bash scripts/data/$script"; done
+```
+
 ## Usage
 <span id="colablink">Colab Examples:</span> We provide google colabs to help reproducing and customing our repo, which includes `experiments(train and test)`, `prediction`, `visualization` and `custom data`.
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_X7O2BkFLvqyCdZzDZvV2MB0aAvYALLC)
